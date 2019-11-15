@@ -15,12 +15,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20.5dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center_vertical">
+
 
         <TextView
             android:id="@+id/tv_game_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#262626"
             tools:text="矫情工作室" />
 
         <TextView
@@ -29,13 +32,43 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14.5dp"
             android:layout_toEndOf="@id/tv_game_name"
+            android:textColor="#999999"
             tools:text="在线" />
 
         <ImageView
+            android:id="@+id/iv_online_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/tv_online_state"
             android:src="@mipmap/iv_online_state" />
+
+
+        <TextView
+            android:id="@+id/tv_game_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_game_name"
+            android:textColor="#999999"
+            tools:text="tesdfafafadfadfafafsdf" />
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000"
+            android:layout_below="@id/tv_game_account"
+            android:layout_marginTop="10dp" />
+
+
+        <TextView
+            android:id="@+id/tv_content_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/v_line"
+            android:layout_marginTop="10dp"
+            android:textColor="#999999"
+            tools:text="tesdfafafadfadfafafsdf" />
+
 
     </RelativeLayout>
 

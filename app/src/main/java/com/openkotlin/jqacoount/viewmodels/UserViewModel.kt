@@ -25,7 +25,7 @@ class UserViewModel : BaseViewModel() {
         updateAllAccount()
     }
 
-    private fun updateAllAccount() {
+    fun updateAllAccount() {
         launchOnIO(
             tryBlock = {
                 // 1. Try with server to get data
@@ -37,7 +37,7 @@ class UserViewModel : BaseViewModel() {
                 Log.d("Tanck", "tryBlock Block: $serverMsg")
             },
             catchBlock = {
-
+                userAccountRsps.postValue(null)
             },
             finallyBlock = {
 

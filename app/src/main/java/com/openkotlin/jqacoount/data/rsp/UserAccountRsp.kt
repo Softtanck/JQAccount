@@ -1,5 +1,7 @@
 package com.openkotlin.jqacoount.data.rsp
 
+import java.util.*
+
 /**
  *
  *  Current name : UserAccountRsp in `JQAcoount`
@@ -35,11 +37,12 @@ data class UserAccountRsp(
     var userPassword: Any? = null,
     var bindNumber: Any? = null,
     var tieBindNumber: Int = 0,
-    var lastLoginTime: String? = null,
+    var lastLoginTime: Date? = null,
     var gameName: String? = null,
     var gameAccount: String? = null,
     var gamePassword: String? = null,
     var gameTeamName: String? = null,
     var isExpired: Boolean = false,
-    var isOnline: Boolean = false
+    var isOnline: Boolean = false,
+    var gameAccountIsBlocked: Boolean = false
 )

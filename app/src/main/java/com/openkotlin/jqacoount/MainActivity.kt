@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openkotlin.jqacoount.adapters.AccountAdapter
+import com.openkotlin.jqacoount.utils.SpacesItemDecoration
 import com.openkotlin.jqacoount.viewmodels.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,6 +27,18 @@ class MainActivity : AppCompatActivity() {
         rv_account_list.layoutManager =
             LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
 
+        srl_header.isRefreshing = false
+
+        srl_header.setColorSchemeResources(android.R.color.holo_blue_light,
+            android.R.color.holo_red_light,
+            android.R.color.holo_orange_light)
+
+        srl_header.setProgressBackgroundColorSchemeResource(android.R.color.white)
+
+        srl_header.setOnRefreshListener {
+            homeViewModel!!.updateAllAccount()
+        }
+
         // If we want to the parameters, This line should be added factor.
         homeViewModel = ViewModelProviders.of(this@MainActivity).get(UserViewModel::class.java)
 
@@ -33,14 +46,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
         homeViewModel!!.userAccountRsps.observe(this) {
             Log.d(TAG, "The data has been changed")
+            srl_header.isRefreshing = false
+            if (it == null) return@observe
             if (accountAdapter == null) {
                 accountAdapter = AccountAdapter(this@MainActivity, it)
+                rv_account_list.addItemDecoration(SpacesItemDecoration(20))
                 rv_account_list.adapter = accountAdapter
 //                TODO("First time logic should be handled in this block")
             } else {
 //                TODO("Just notify the item if there are items changed")
+                accountAdapter!!.notifyDataSetChanged()
             }
         }
     }
