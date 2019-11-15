@@ -42,9 +42,8 @@ abstract class BaseRetrofitClient {
      * This is a custom builder if the default build can't be used in your case,
      * You can invoke this method to generate your builder for OKHTTP
      */
-    open fun customBuilder(builder: OkHttpClient.Builder) {
-
-    }
+    @SuppressWarnings("unused")
+    open fun customBuilder(builder: OkHttpClient.Builder) = Unit
 
     open fun <APIService> getAPIService(serviceClass: Class<APIService>, baseUrl: String): APIService {
         // The following snippet code has the same function

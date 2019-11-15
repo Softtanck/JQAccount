@@ -9,7 +9,7 @@ package com.openkotlin.jqacoount.data.rsp
  *  Note : N/A
  *
  */
-class UserAccountRsp {
+data class UserAccountRsp(
 
     /**
      * id : null
@@ -28,18 +28,18 @@ class UserAccountRsp {
      * online : false
      */
 
-    var id: Any? = null
-    var cardNumber: Any? = null
-    var userName: Any? = null
-    var expireTime: Any? = null
-    var userPassword: Any? = null
-    var bindNumber: Any? = null
-    var tieBindNumber: Int = 0
-    var lastLoginTime: String? = null
-    var gameName: String? = null
-    var gameAccount: String? = null
-    var gamePassword: String? = null
-    var gameTeamName: String? = null
-    var isExpired: Boolean = false
+    var id: Any? = null,
+    var cardNumber: Any? = null,
+    var userName: Any? = null,
+    var expireTime: Any? = null,
+    var userPassword: Any? = null,
+    var bindNumber: Any? = null,
+    var tieBindNumber: Int = 0,
+    var lastLoginTime: String? = null,
+    var gameName: String? = null,
+    var gameAccount: String? = null,
+    var gamePassword: String? = null,
+    var gameTeamName: String? = null,
+    var isExpired: Boolean = false,
     var isOnline: Boolean = false
-}
+)
