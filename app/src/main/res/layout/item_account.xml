@@ -55,7 +55,7 @@
             android:id="@+id/v_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#000000"
+            android:background="#F2F2F2"
             android:layout_below="@id/tv_game_account"
             android:layout_marginTop="10dp" />
 
