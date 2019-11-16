@@ -42,7 +42,7 @@ data class UserAccountRsp(
     var gameAccount: String? = null,
     var gamePassword: String? = null,
     var gameTeamName: String? = null,
-    var isExpired: Boolean = false,
-    var isOnline: Boolean = false,
+    var expired: Boolean = false,
+    var online: Boolean = false,
     var gameAccountIsBlocked: Boolean = false
 )

@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 //                TODO("First time logic should be handled in this block")
             } else {
 //                TODO("Just notify the item if there are items changed")
-                accountAdapter!!.notifyDataSetChanged()
+                accountAdapter!!.notifyDataChanged(it)
             }
         }
     }

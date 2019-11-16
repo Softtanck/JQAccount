@@ -20,8 +20,14 @@ import java.text.DateFormat
  *  Note : N/A
  *
  */
-class AccountAdapter(private val context: Context, private val accountList: List<UserAccountRsp>) :
+class AccountAdapter(private val context: Context, private var accountList: List<UserAccountRsp>) :
     RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() {
+
+
+    fun notifyDataChanged( newAccountList: List<UserAccountRsp>) {
+        this.accountList = newAccountList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountViewHolder {
         return AccountViewHolder(LayoutInflater.from(context).inflate(R.layout.item_account, parent, false))
@@ -34,8 +40,8 @@ class AccountAdapter(private val context: Context, private val accountList: List
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AccountViewHolder, position: Int) {
         holder.itemView.tv_game_name.text = accountList[position].gameName
-        holder.itemView.tv_online_state.text = if (accountList[position].isOnline) "在线" else "离线"
-        holder.itemView.iv_online_state.setImageResource(if (accountList[position].isOnline) R.mipmap.iv_online_state else R.mipmap.iv_leaved)
+        holder.itemView.tv_online_state.text = if (accountList[position].online) "在线" else "离线"
+        holder.itemView.iv_online_state.setImageResource(if (accountList[position].online) R.mipmap.iv_online_state else R.mipmap.iv_leaved)
         holder.itemView.tv_game_account.text = "账号:${accountList[position].gameAccount}"
 
         holder.itemView.tv_content_details.text = "账号密码 : ${accountList[position].gamePassword}  \r\n" +
