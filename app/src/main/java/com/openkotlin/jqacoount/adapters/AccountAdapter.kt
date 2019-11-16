@@ -20,13 +20,13 @@ import java.text.DateFormat
  *  Note : N/A
  *
  */
-class AccountAdapter(private val context: Context, private var accountList: List<UserAccountRsp>) :
+class AccountAdapter(private val context: Context, var accountList: List<UserAccountRsp>) :
     RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() {
 
 
     fun notifyDataChanged( newAccountList: List<UserAccountRsp>) {
         this.accountList = newAccountList
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountViewHolder {
@@ -43,7 +43,6 @@ class AccountAdapter(private val context: Context, private var accountList: List
         holder.itemView.tv_online_state.text = if (accountList[position].online) "在线" else "离线"
         holder.itemView.iv_online_state.setImageResource(if (accountList[position].online) R.mipmap.iv_online_state else R.mipmap.iv_leaved)
         holder.itemView.tv_game_account.text = "账号:${accountList[position].gameAccount}"
-
         holder.itemView.tv_content_details.text = "账号密码 : ${accountList[position].gamePassword}  \r\n" +
                 "当前车队名字 : ${accountList[position].gameTeamName} \r\n" +
                 "该账号是否封停：${accountList[position].gameAccountIsBlocked} \r\n" +

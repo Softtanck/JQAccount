@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openkotlin.jqacoount.adapters.AccountAdapter
 import com.openkotlin.jqacoount.utils.SpacesItemDecoration
@@ -55,10 +56,34 @@ class MainActivity : AppCompatActivity() {
                 accountAdapter = AccountAdapter(this@MainActivity, it)
                 rv_account_list.addItemDecoration(SpacesItemDecoration(20))
                 rv_account_list.adapter = accountAdapter
-//                TODO("First time logic should be handled in this block")
             } else {
-//                TODO("Just notify the item if there are items changed")
+                val oldDatas = accountAdapter!!.accountList
+                val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+                    override fun areItemsTheSame(
+                        oldItemPosition: Int,
+                        newItemPosition: Int
+                    ): Boolean {
+                        return oldDatas[oldItemPosition].gameAccount == it[newItemPosition].gameAccount
+                    }
+
+                    override fun getOldListSize(): Int {
+                        return oldDatas.size
+                    }
+
+                    override fun getNewListSize(): Int {
+                        return it.size
+                    }
+
+                    override fun areContentsTheSame(
+                        oldItemPosition: Int,
+                        newItemPosition: Int
+                    ): Boolean {
+                        return oldDatas[oldItemPosition].online == it[newItemPosition].online
+                    }
+
+                }, true)
                 accountAdapter!!.notifyDataChanged(it)
+                diffResult.dispatchUpdatesTo(accountAdapter!!)
             }
         }
     }
